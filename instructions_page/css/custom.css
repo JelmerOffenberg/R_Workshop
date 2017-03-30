@@ -1,7 +1,8 @@
 .head {
   text-align: left;
-  padding-top: 2em;
+  border-bottom: 1px solid green;
 }
+
 
 .banner {
   background-color: #F2F2F2;
@@ -9,6 +10,8 @@
 
 .banner-head {
   text-align: center;
+  font-family: lucida grande;
+
 }
 
 .function {
@@ -16,5 +19,17 @@
 }
 
 .tips {
+  padding-bottom: 1em;
+  border-bottom: 1px solid green;
+}
+
+.hint {
+  padding-top: 0.5em;
+}
+
+.exercise {
+  margin-top: 3em;
+  padding: 2em;
   background-color: #F2F2F2;
+  border-radius: 1.5em;
 }
