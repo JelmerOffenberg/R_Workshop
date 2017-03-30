@@ -27,24 +27,49 @@
       <div class="one column"></div>
       <div class="ten columns">
 
+
         <h3 class="head">Exercise 1</h3>
-        <ol>
-          <li>Use the lm() function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the <b class='function'>summary()</b> function to print the results. Comment on the output.</li>
-            <ul>
-            <li>Is there a relationship between the predictor and the re-sponse?</li>
-            <li>How strong is the relationship between the predictor and the response?</li>
-            <li>Is the relationship between the predictor and the response positive or negative?</li>
-            <li>What is the predicted mpg associated with a horsepower of 98? What are the associated 95 % confidence and prediction intervals?</li>
-            </ul>
-          <li>Plot the response and the predictor. Use the <b class='function'>abline()</b> function to display the least squares regression line.</li>
-          <li>Use the <b class='function'>plot()</b> function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.</li>
-      </ol>
+
+        <div class="row">
+          <div class="twelve columns">
+            Tips
+          </div>
+        </div>
+
+        <div class="row tips">
+          <div class="twelve columns">
+            <ol>
+              <li>Use the lm() function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the <b class='function'>summary()</b> function to print the results. Comment on the output.</li>
+                <ul>
+                <li>Is there a relationship between the predictor and the re-sponse?</li>
+                <li>How strong is the relationship between the predictor and the response?</li>
+                <li>Is the relationship between the predictor and the response positive or negative?</li>
+                <li>What is the predicted mpg associated with a horsepower of 98? What are the associated 95 % confidence and prediction intervals?</li>
+                </ul>
+              <li>Plot the response and the predictor. Use the <b class='function'>abline()</b> function to display the least squares regression line.</li>
+              <li>Use the <b class='function'>plot()</b> function to produce diagnostic plots of the least squares regression fit. Comment on any problems you see with the fit.</li>
+            </ol>
+          </div>
+        </div>
+
       </div>
       <div class="one column"></div>
     </div>
     <div class="row">
       <div class="one column"></div>
-      <div class="ten columns"><h3 class="head">Exercise 2</h3></div>
+      <div class="ten columns"><h3 class="head">Exercise 2</h3>
+      <ol>
+        <li>Produce a scatterplot matrix which includes all of the variables in the data set.</li>
+        <li>Compute the matrix of correlations between the variables using the function cor(). You will need to exclude the name variable, which is qualitative.</li>
+        <li>Use the lm() function to perform a multiple linear regression with mpg as the response and all other variables except name as the predictors. Use the summary() function to print the results. Comment on the output. For instance:</li>
+        <ul>
+          <li>Is there a relationship between the predictors and the re- sponse?</li>
+          <li>Which predictors appear to have a statistically significant relationship to the response?</li>
+          <li>What does the coefficient for the year variable suggest?</li>
+        </ul>
+        <li>Use the plot() function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? Does the leverage plot identify any observations with unusually high leverage?</li>
+      </ol>
+      </div>
       <div class="one column"></div>
     </div>
   </body>
