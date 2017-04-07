@@ -1,4 +1,4 @@
-Simple linear regression
+Least squares regression
 (a) Use the lm() function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the summary() function to print the results. Comment on the output.
 
 i. Is there a relationship between the predictor and the re-sponse?
