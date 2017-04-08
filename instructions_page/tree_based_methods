@@ -19,5 +19,7 @@ Now we will attempt to predict Sales using regression trees and related approach
 (b) library(tree)
     var_name = tree('response_variable' ~ ., data = 'dataset', subset = 'train_indices')
 (c) # Tree has a built-in cross-validation function, lucky for us!
-    # As default cross validation has a K of 10. You can play with this 
+    # As default cross validation has a K of 10. You can play with this
     cross_validated_tree = cv.tree('your tree variables')
+(d)
+(e) # For this exercise we use the randomForest library
