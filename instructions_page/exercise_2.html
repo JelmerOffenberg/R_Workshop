@@ -45,8 +45,22 @@
             <li>
               Is there a relationship between the predictor and the re-sponse? <a href="#x1q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q1"> Need a hint?</a>
               <div class="collapse" id="x1q1">
+                <h5>Hint 1:</h5>
                 <pre><code>
-                This is a test
+# Remember to split your data in training and test sets, for this you can use the following function:
+train_indices = sample(...)
+# Sample requires a vector or an integer, an integer is easily obtained by applying the nrow() function to your dataframe.
+                </code></pre>
+                <h5>Hint 2:</h5>
+                <pre><code>
+library(tree)
+var_name = tree('response_variable' ~ ., data = 'dataset', subset = 'train_indices')
+                </code></pre>
+                <h5>Hint 3:</h5>
+                <pre><code>
+# Tree has a built-in cross-validation function, lucky for us!
+# As default cross validation has a K of 10. You can play with this
+cross_validated_tree = cv.tree('your tree variables')
                 </code></pre>
               </div>
             </li>
