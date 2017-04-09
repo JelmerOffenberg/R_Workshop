@@ -3,9 +3,8 @@
   border-bottom: 1px solid green;
 }
 
-
 .banner {
-  background-color: #F2F2F2;
+  background-color: #FFFFF;
 }
 
 .banner-head {
@@ -15,7 +14,12 @@
 }
 
 .function {
-  color: #5DCD00;
+  font-family: monospace;
+  background-color: #e2e2e2;
+  color: black;
+  line-height: 1.3em;
+  font-weight: bold;
+  padding: 0.3em 0.3em;
 }
 
 .tips {
@@ -34,9 +38,6 @@
   border-radius: 1.5em;
 }
 
-.collapse {
-  display: none;
-}
-.collapse.in {
-  display: block;
+.question {
+  padding-bottom: 0.5em;
 }

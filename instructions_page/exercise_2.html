@@ -30,7 +30,7 @@
       <!-- Banner -->
       <div class="row">
         <div class="eight columns offset-by-two banner">
-          <h1 class="banner-head">Linear Regression</h1>
+          <h1 class="banner-head">Tree-based Methods</h1>
         </div>
       </div>
       <!-- Banner -->
@@ -40,11 +40,11 @@
         <div class="eight columns offset-by-two exercise">
         <h3 class="head">Exercise 1</h3>
         <ol>
-          <li>Use the lm() function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the <b class='function'>summary()</b> function to print the results. Comment on the output.</li>
+          <li>Use the <span class='function'>lm()</span> function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the <b class='function'>summary()</b> function to print the results. Comment on the output.</li>
             <ul>
             <li>
-              Is there a relationship between the predictor and the re-sponse? <a href="#x1q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q1"> Need a hint?</a>
-              <div class="collapse" id="x1q1">
+              Is there a relationship between the predictor and the re-sponse? <a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1"> Need a hint?</a>
+              <div class="collapse" id="x2q1">
                 <pre><code>
                 This is a test
                 </code></pre>
@@ -65,22 +65,217 @@
       <div class="row">
         <div class="eight columns offset-by-two exercise">
         <h3 class="head">Exercise 2</h3>
-        <b class="hint">Hint:</b><br>To exclude a column, you can use negative indexing: data[, -8]
-        <p class="tips"><b class="hint"><br>Functions used:</b><br>pairs(), cor(), lm(), summary(), plot()</p>
+        <span><b>Dataset</b>: Carseats</span><br>
+        <span><b>Packages</b>: tree, ISLR, randomForest</span><br>
+        <span><b>Question</b>: Predict Sales using regression trees and related approaches, treating the response as a quantitative variable. We use the <b>mean squared error (MSE)</b> as evaluation metric. You will need to end up with a total of <b>four</b> models. Store the MSE of the <b>normal</b> decision trees in their own variable.</span><br><br>
         <ol>
-          <li>Produce a scatterplot matrix which includes all of the variables in the data set.</li>
-          <li>Compute the matrix of correlations between the variables using the function cor(). You will need to exclude the name variable, which is qualitative.</li>
-          <li>Use the lm() function to perform a multiple linear regression with mpg as the response and all other variables except name as the predictors. Use the summary() function to print the results. Comment on the output. For instance:</li>
-          <ul>
-            <li>Is there a relationship between the predictors and the re-sponse?</li>
-            <li>Which predictors appear to have a statistically significant relationship to the response?</li>
-            <li>What does the coefficient for the year variable suggest?</li>
-          </ul>
-          <li>Use the plot() function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? Does the leverage plot identify any observations with unusually high leverage?</li>
+          <li>Explore the data by making some informative plots and summaries. Use the ?Carseats command to ask R for a description of the dataset. <a href="#x1q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q0" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q0">
+            <pre><code>
+# Use for example the plot() function and pairs() function to do some plotting.
+# Use the ? command within R for more information on how to plot data.
+            </code></pre>
+          </div>
+          <li>Split the data set into a training set and a test set. <a href="#x1q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q1" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q1">
+            <pre><code>
+# Remember to split your data in training and test sets, for this you can use the following function:
+train_indices = sample(...)
+# Sample requires a vector or an integer, an integer is easily obtained by applying the nrow() function to your dataframe.
+            </code></pre>
+          </div>
+          <li>Fit a normal regression tree to the training set. Plot the tree, and interpret the results. What test MSE do you obtain? <a href="#x1q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q2" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q2">
+            <pre><code>
+# To build a tree in R we use the tree library
+library(tree)
+var_name = tree('response_variable' ~ ., data = 'dataset', subset = 'train_indices')
+
+# To obtain the MSE (Mean Squared Error) you can subtract your predictions from each true value in your test set. Square each result and take the mean.
+mean((y-yhat)^2)
+            </code></pre>
+          </div>
+          <li>Cross-validation in order to determine the optimal level of tree complexity. Does pruning the tree improve the test MSE? <a href="#x1q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q3" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q3">
+            <pre><code>
+# Tree has a built-in cross-validation function, lucky for us!
+# As default cross validation has a K of 10. You can play with this
+cross_validated_tree = cv.tree('your tree variables')
+
+# You can plot the cross validated tree using the plot function.
+plot(cross_validated_tree)
+            </code></pre>
+          </div>
+          <li>Use the bagging approach in order to analyze this data. What test MSE do you obtain? Use the importance() function to determine which variables are most important. <a href="#x1q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q4" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q4">
+            <pre><code>
+# For bagging we can use the randomForest package, with an adjusted variable of 'mtry' which indicates the number of features used.
+# Remember, bagging samples from all data with replacement and uses all features.
+car.forest = randomForest('your formula', data='...', subset='...', mtry='...', ntree='...')
+          </code></pre>
+          </div>
+          <li>Use random forests to analyze this data. What test MSE do you obtain? Use the importance() function to determine which variables are most important. <a href="#x1q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q5" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q5">
+            <pre><code>
+# This one should be easy, remember the difference between bagging and random forest. Use the random forest library.
+            </code></pre>
+          </div>
+          <li>Try to make a single plot with the MSE on the y-axis and the number of trees on the x-axis for each approach.<a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x1q6">
+            <pre><code>
+# This question might be a bit harder. Remember, the normal tree approach has a single MSE, the randomForest approaches log an MSE per number of trees used.
+# Explore the randomForest package to find out where the MSE is stored, then try to make the plot.
+
+# You will have four models:
+# - Full grown tree
+# - Pruned tree
+# - The bagging model
+# _ The random forest model
+
+abline() # plots a straight line.
+lines() # plots lines based on x, y coordinates.
+            </code></pre>
+          </div>
         </ol>
         </div>
       </div>
       <!-- !Exercise 2 -->
+
+      <!-- Exercise 3 -->
+      <div class="row">
+        <div class="eight columns offset-by-two exercise">
+        <h3 class="head">Exercise 3</h3>
+        <span><b>Dataset</b>: OJ, part of the ISLR library</span><br>
+        <span><b>Packages</b>: ISLR, tree</span><br>
+        <span><b>Question</b>: This question is concerned with the OJ dataset which is part of the ISLR library.</span><br><br>
+        <ol>
+          <li>Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations. <a href="#x2q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q0" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q0">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li>Fit a tree to the training data, with Purchase as the response and the other variables as predictors. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?
+<a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q1">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li>Type in the name of the tree object in order to get a detailed text output. Pick one of the terminal nodes, and interpret the information displayed.
+<a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q2">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li>Create a plot of the tree, and interpret the results.
+<a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q3">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li>Predict the response on the test data, and produce a confusion matrix comparing the test labels to the predicted test labels. What is the test error rate?
+<a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q4">
+            <pre><code>
+          </code></pre>
+          </div>
+          <li>Apply the cv.tree() function to the training set in order to determine the optimal tree size.
+<a href="#x2q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q5" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q5">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li>Produce a plot with tree size on the x-axis and cross-validated classification error rate on the y-axis.
+<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+          <li>Which tree size corresponds to the lowest cross-validated classification error rate?
+
+<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+          <li>Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.
+<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+          <li>Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.
+<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+          <li>Compare the test error rates between the pruned and unpruned trees. Which is higher?
+<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+        </ol>
+        </div>
+      </div>
+      <!-- !Exercise 3 -->
+
+
+
+
+      <!-- Exercise 2 -->
+      <div class="row">
+        <div class="eight columns offset-by-two exercise">
+        <h3 class="head">Exercise 2</h3>
+        <span><b>Dataset</b>: </span><br>
+        <span><b>Packages</b>: </span><br>
+        <span><b>Question</b>: </span><br><br>
+        <ol>
+          <li><a href="#x2q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q0" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q0">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li><a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q1">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li><a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q2">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li><a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q3">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li><a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q4">
+            <pre><code>
+          </code></pre>
+          </div>
+          <li><a href="#x2q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q5" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q5">
+            <pre><code>
+            </code></pre>
+          </div>
+          <li><a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
+          <div class="collapse" id="x2q6">
+            <pre><code>
+
+            </code></pre>
+          </div>
+        </ol>
+        </div>
+      </div>
+      <!-- !Exercise 3 -->
 
     </div>
   </body>
