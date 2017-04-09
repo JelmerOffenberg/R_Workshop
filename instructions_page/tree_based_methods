@@ -21,5 +21,8 @@ Now we will attempt to predict Sales using regression trees and related approach
 (c) # Tree has a built-in cross-validation function, lucky for us!
     # As default cross validation has a K of 10. You can play with this
     cross_validated_tree = cv.tree('your tree variables')
-(d)
-(e) # For this exercise we use the randomForest library
+(d) # For bagging we can use the randomForest package, with an adjusted variable of 'mtry' which indicates the number of features used.
+    # Remember, bagging samples from all data with replacement and uses all features.
+    car.forest = randomForest('your formula', data='...', subset='...', mtry='...', ntree='...')
+
+(e) # This one should be easy, remember the difference between bagging and random forest. Use the random forest library.

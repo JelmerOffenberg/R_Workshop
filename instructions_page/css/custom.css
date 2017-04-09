@@ -4,7 +4,11 @@
 }
 
 .banner {
+<<<<<<< HEAD
   background-color: #FFFFF;
+=======
+  background-color: #fafafa;
+>>>>>>> c020a038604a34f2c29b7b14e6a21d2460be2441
 }
 
 .banner-head {
@@ -34,7 +38,7 @@
 .exercise {
   margin-top: 3em;
   padding: 2em;
-  background-color: #F2F2F2;
+  background-color: #fafafa;
   border-radius: 1.5em;
 }
 
