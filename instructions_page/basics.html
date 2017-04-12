@@ -30,18 +30,10 @@
       <!-- Banner -->
       <div class="row">
         <div class="eight columns offset-by-two banner">
-          <h1 class="banner-head">Linear models</h1>
+          <h1 class="banner-head">Basics</h1>
         </div>
       </div>
       <!-- Banner -->
-
-str
-summary
-mean, sd, range
-c, data.frame, rep
-plot (col, type), pairs, abline
-
-
 
       <!-- Exercise 1 -->
       <div class="row">
@@ -79,17 +71,18 @@ pairs(iris)
 pairs(iris, col=iris$Species)
               </pre></code>
               </div></li>
-          <li><a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6"> Need a hint?</a>
+          <li>Create two vectors a and b, each containing four numbers. You can create a vector with the values 1,2 and 3 as follows c(1,2,3).<a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6"> Need a hint?</a>
             <div class="collapse" id="x1q6">
             <pre><code>
-
+a = c(2,5,3,6)
+b = c(3,5,1,6)
             </pre></code>
 
             </div></li>
-          <li><a href="#x1q7" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q7">Need a hint?</a>
+          <li>Use the <b class='function'>data.frame()</b> function to create a data frame consisting of the two vectors you just created.<a href="#x1q7" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q7"> Need a hint?</a>
           <div class="collapse" id="x1q7">
           <pre><code>
-
+data_frame = data.frame(a,b)
           </pre></code>
 
         </div>
@@ -107,19 +100,25 @@ pairs(iris, col=iris$Species)
           <span><b>Packages</b>: -</span><br>
           <span><b>Question</b>: In R we can write a basic function using the <b class='function'>function()</b> command. </span><br><br>
             <ol>
-            <li>Write a first function that takes as input X and returns X^2.<a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1"> Need a hint?</a>
+            <li>Write a first function that takes as input X and returns X^2. Execute your function in the console.<a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1"> Need a hint?</a>
               <div class="collapse" id="x2q1">
               <pre><code>
 square = function(X) {
   return(X^2)
 }
+
+square(3)
               </pre></code>
               </div>
             </li>
-            <li><a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2"> Need a hint?</a>
+            <li>Now adapt your function so it can take any value for the power. Execute your function.<a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2"> Need a hint?</a>
             <div class="collapse" id="x2q2">
             <pre><code>
+square2 = function(X, P) {
+  return(X^P)
+}
 
+square2(3,6)
             </pre></code>
             </div></li>
             <li><a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3"> Need a hint?</a>
