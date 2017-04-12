@@ -35,66 +35,120 @@
       </div>
       <!-- Banner -->
 
+str
+summary
+mean, sd, range
+c, data.frame, rep
+plot (col, type), pairs, abline
+
+
+
       <!-- Exercise 1 -->
       <div class="row">
         <div class="eight columns offset-by-two exercise">
-          <h3 class="head">Exercise 1: Least-squares regression, one predictor.</h3>
-          <span><b>Dataset</b>: Auto</span><br>
+          <h3 class="head">Exercise 1: Load data and peform basic data exploration</h3>
+          <span><b>Dataset</b>: iris</span><br>
           <span><b>Packages</b>: -</span><br>
-          <span><b>Question</b>: Perform a simple linear regression on the Cars data set, answer the questions below.</span><br><br>
-        <ol>
-          <li>Use the <span class='function'>lm()</span> function to perform a simple linear regression with mpg as the response and horsepower as the predictor. Use the <b class='function'>summary()</b> function to print the results. Comment on the output.</li>
-            <ul>
-            <li>
-              Is there a relationship between the predictor and the response? <a href="#x1q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q1"> Need a hint?</a>
+          <span><b>Question</b>: This basic data set is about measurements of various types of flowers. We will use this data for some basic exploration.</span><br><br>
+            <ol>
+            <li>The iris data set is available by default in R. Use the <b class='function'>str()</b> and <b class='function'>summary()</b> functions to get general information about the data.<a href="#x1q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q1"> Need a hint?</a>
               <div class="collapse" id="x1q1">
               <pre><code>
-# You can find this information in the summary
+str(iris)
+summary(iris)
               </pre></code>
               </div>
             </li>
-            <li>How strong is the relationship between the predictor and the response?<a href="#x1q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q2"> Need a hint?</a>
-            <div class="collapse" id="x1q2">
+            <li>Use the $ sign to select variables from the data frame. For example, enter iris$Sepal.Length in the console and see what happens. Now experiment with the <b class='function'>sd()</b>, <b class='function'>mean()</b> and <b class='function'>range()</b> functions. Also investigate what these functions do by typing ?sd() in the console. Feel free to try other functions as well. <a href="#x1q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q2"> Need a hint?</a>
+              <div class="collapse" id="x1q2">
+              <pre><code>
+sd(iris$Sepal.Length)
+..
+              </pre></code>
+              </div></li>
+            <li>Use the <b class='function'>plot()</b> function to plot the Sepal.Length against the Petal.Length. Afterwards, run the plot again but this time add the color of the species to the plot by using the col=iris$Species argument inside the plot function.<a href="#x1q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q3"> Need a hint?</a>
+              <div class="collapse" id="x1q3">
+              <pre><code>
+plot(iris$Sepal.Length, iris$Petal.Length, col=iris$Species)
+              </pre></code>
+              </div></li>
+            <li>Use the <b class='function'>pairs()</b> function to create a scatterplot matrix. Now add the 'col=iris$Species' argument to the function and see what happens.<a href="#x1q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q4"> Need a hint?</a>
+              <div class="collapse" id="x1q4">
+              <pre><code>
+pairs(iris)
+pairs(iris, col=iris$Species)
+              </pre></code>
+              </div></li>
+          <li><a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6"> Need a hint?</a>
+            <div class="collapse" id="x1q6">
             <pre><code>
-# You can find this information in the summary
+
+            </pre></code>
+
+            </div></li>
+          <li><a href="#x1q7" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q7">Need a hint?</a>
+          <div class="collapse" id="x1q7">
+          <pre><code>
+
+          </pre></code>
+
+        </div>
+         </ul>
+        </div>
+      </div>
+      <!-- !Exercise 1 -->
+
+
+      <!-- Exercise 1 -->
+      <div class="row">
+        <div class="eight columns offset-by-two exercise">
+          <h3 class="head">Exercise 2: Writing a function</h3>
+          <span><b>Dataset</b>: -</span><br>
+          <span><b>Packages</b>: -</span><br>
+          <span><b>Question</b>: In R we can write a basic function using the <b class='function'>function()</b> command. </span><br><br>
+            <ol>
+            <li>Write a first function that takes as input X and returns X^2.<a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1"> Need a hint?</a>
+              <div class="collapse" id="x2q1">
+              <pre><code>
+square = function(X) {
+  return(X^2)
+}
+              </pre></code>
+              </div>
+            </li>
+            <li><a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2"> Need a hint?</a>
+            <div class="collapse" id="x2q2">
+            <pre><code>
+
             </pre></code>
             </div></li>
-            <li>Is the relationship between the predictor and the response positive or negative?<a href="#x1q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q3"> Need a hint?</a>
-            <div class="collapse" id="x1q3">
+            <li><a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3"> Need a hint?</a>
+            <div class="collapse" id="x2q3">
             <pre><code>
-# You can find this information in the summary
+
             </pre></code>
             </div></li>
-            <li>What is the predicted mpg associated with a horsepower of 98? What are the associated 95 % confidence and prediction intervals?<a href="#x1q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q4"> Need a hint?</a>
-            <div class="collapse" id="x1q4">
+            <li><a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4"> Need a hint?</a>
+            <div class="collapse" id="x2q4">
             <pre><code>
-# You will need to make a prediction using the predict() function in R. This function requires a model, a data frame and an optional response argument.
-?predict.lm # information about predict
-to_predict_dataframe = data.frame(horsepower=c(98))
-predict(lm, to_predict_dataframe, interval='...')
+
             </pre></code>
             </div></li>
             </ul>
-          <li>Plot the response and the predictor. Use the <b class='function'>abline()</b> function to display the least squares regression line.<a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6"> Need a hint?</a>
-          <div class="collapse" id="x1q6">
+          <li><a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6"> Need a hint?</a>
+          <div class="collapse" id="x2q6">
           <pre><code>
-# Your X variable is horsepower, and your Y variable is mpg. Use the plot() function to plot these two.
-?plot()
 
-# To plot the regression line, look up the abline() command using:
-?abline()
           </pre></code>
 
           </div></li>
-          <li>Use the <b class='function'>plot()</b> function to produce diagnostic plots of the least squares regression fit. Do you recognize what these plots are about? Do you find any problems? <a href="#x1q7" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q7">Need a hint?</a>
-          <div class="collapse" id="x1q7">
+          <li><a href="#x2q7" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q7">Need a hint?</a>
+          <div class="collapse" id="x2q7">
           <pre><code>
-# You can directly plot your linear models to view the diagnostic plots. It might be useful to set the mfrow parameter so you can see four plots at once.
-par(mfrow=c(2,2))
-plot(lm)
+
           </pre></code>
 
-          </div></li>
+        </div></ol>
         </ol>
         </div>
       </div>
@@ -102,117 +156,6 @@ plot(lm)
 
 
 
-
-
-
-      <!-- Exercise 2 -->
-      <div class="row">
-        <div class="eight columns offset-by-two exercise">
-        <h3 class="head">Exercise 2: Multiple linear regression</h3>
-        <span><b>Dataset</b>: Auto</span><br>
-        <span><b>Packages</b>: -</span><br>
-        <span><b>Question</b>: This question involves the use of multiple linear regression on the Auto data set.</span><br><br>
-        <ol>
-          <li>Produce a scatterplot matrix which includes all of the variables in the data set.
-<a href="#x2q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q0" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q0">
-            <pre><code>
-# Perhaps you can use the following function:
-pairs()
-            </code></pre>
-          </div>
-          <li>Compute the matrix of correlations between the variables using the function cor(). You will need to exclude the name variable, which is qualitative.
-<a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q1">
-            <pre><code>
-# We can only compute correlations between numbers, you must exclude any qualitative labels.
-# For example to exclude column 6:
-selection = data[,-6] # This is the data matrix selected without the 6th column.
-
-# An alternative is to use the subset command, check it out via:
-?subset()
-            </code></pre>
-          </div>
-          <li>Use the lm() function to perform a multiple linear regression with mpg as the response and all other variables except name as the predictors. Use the summary() function to print the results. Comment on the output. For instance:
-<a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q2">
-            <pre><code>
-# Use the summary function to answer the questions below.
-            </code></pre>
-          </div>
-          <ul>
-            <li>Is there a relationship between the predictors and the response?</li>
-            <li>Which predictors appear to have a statistically significant relationship to the response?</li>
-            <li>What does the coefficient for the year variable suggest?</li>
-          </ul>
-          <li>Use the plot() function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? Does the leverage plot identify any observations with unusually high leverage?
-<a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q3">
-            <pre><code>
-            </code></pre>
-          </div>
-          <li>Use the * and : symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?
-<a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q4">
-          <pre><code>
-# To model interactions we use the * and : notation. * notation includes both variables alone and their interation, : includes only the interaction.
-# For example
-lm.auto = lm(mpg ~ weight * acceleration + displacement)
-          </code></pre>
-          </div>
-        </ol>
-        </div>
-      </div>
-      <!-- !Exercise 3 -->
-
-
-
-      <!-- Exercise 2 -->
-      <div class="row">
-        <div class="eight columns offset-by-two exercise">
-        <h3 class="head">Exercise 3: Logistic regression using generalized linear models.</h3>
-        <span><b>Dataset</b>: Auto</span><br>
-        <span><b>Packages</b>: glm</span><br>
-        <span><b>Question</b>: In this problem, you will develop a model to predict whether a given car gets high or low gas mileage based on the Auto data set.
-</span><br><br>
-        <ol>
-          <li>Create a binary variable, mpg01, that contains a 1 if mpg contains a value above its median, and a 0 if mpg contains a value below its median. You can compute the median using the median() function. Note you may find it helpful to use the data.frame() function to create a single data set containing both mpg01 and the other Auto variables.
-<a href="#x3q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q0" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x3q0">
-            <pre><code>
-# Use the rep() function to create a vector with zeroes. Fill this vector with ones where the the mpg is exceeding the value of the median. 
-mpg01 = rep(0, length(mpg))
-mpg01[mpg>median(mpg)] = 1
-Auto = data.frame(Auto, mpg01)
-            </code></pre>
-          </div>
-          <li>Explore the data graphically in order to investigate the association between mpg01 and the other features. Which of the other features seem most likely to be useful in predicting mpg01? Scatterplots and boxplots may be useful tools to answer this question. Describe your findings.
-<a href="#x3q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q1" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x3q1">
-            <pre><code>
-# Go crazy by collecting insights using the plot() function, pairs() and cor(). Remember that some variables are categorical.
-            </code></pre>
-          </div>
-          <li>Split the data into a training set and a test set.
-<a href="#x3q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q2" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x3q2">
-            <pre><code>
-# Here it is useful to split the data based on the year. For example take the even years as training data and the odd years as test data.
-train = (year %% 2 == 0) # make effective use of the modulo. You can use this argument in the subset argument.
-            </code></pre>
-          </div>
-          <li>Perform logistic regression on the training data in order to predict mpg01 using the variables that seemed most associated with mpg01 in question 2. What is the test error of the model obtained?
-<a href="#x3q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q3" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x3q3">
-            <pre><code>
-# The test error is the percentage of wrongly classified observations.
-# Logistic regression is performed the same way as a linear model, except we must add an extra paramter 'family=binomial' as function argument.
-            </code></pre>
-          </div>
-        </ol>
-        </div>
-      </div>
-      <!-- !Exercise 3 -->
 
     </div>
   </body>
