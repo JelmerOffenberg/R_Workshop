@@ -126,44 +126,53 @@ lines() # plots lines based on x, y coordinates.
           <li>Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations. <a href="#x2q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q0" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q0">
             <pre><code>
-
+# Use the sample() function
             </code></pre>
           </div>
           <li>Fit a tree to the training data, with Purchase as the response and the other variables as predictors. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?
 <a href="#x2q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q1" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q1">
             <pre><code>
+# Use the tree library, use the parameter subset or create separate training set.
+your_tree = tree(response ~ ., data='...', subset='...')
             </code></pre>
           </div>
           <li>Type in the name of the tree object in order to get a detailed text output. Pick one of the terminal nodes, and interpret the information displayed.
 <a href="#x2q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q2" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q2">
             <pre><code>
+# Type in the name!
             </code></pre>
           </div>
           <li>Create a plot of the tree, and interpret the results.
 <a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q3">
             <pre><code>
+# Plot the tree, do not forget to use text(your_tree) for the labels
             </code></pre>
           </div>
           <li>Predict the response on the test data, and produce a confusion matrix comparing the test labels to the predicted test labels. What is the test error rate?
 <a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q4">
             <pre><code>
+# You will need the predict() function and the table() function.
+prediction = predict(your_tree, test_set, type='class')
+table(test_labels, prediction_labels)
           </code></pre>
           </div>
           <li>Apply the cv.tree() function to the training set in order to determine the optimal tree size.
 <a href="#x2q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q5" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q5">
             <pre><code>
+# You need the built-in cross validation function in tree.
+cv_tree = cv.tree(your_tree, FUN = prune.tree)
             </code></pre>
           </div>
           <li>Produce a plot with tree size on the x-axis and cross-validated classification error rate on the y-axis.
 <a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q6">
             <pre><code>
-
+# Your cross validated models holds different variables, check them out by typing str(cv_tree) or type cv_tree$ and press 'TAB'.
             </code></pre>
           </div>
           <li>Which tree size corresponds to the lowest cross-validated classification error rate?
@@ -171,28 +180,22 @@ lines() # plots lines based on x, y coordinates.
 <a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q6">
             <pre><code>
-
+# Find the lowest deviance and the corresponding tree size.
             </code></pre>
           </div>
           <li>Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.
 <a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q6">
             <pre><code>
-
+# You can use the prune.tree function, type ?prune.tree
             </code></pre>
           </div>
-          <li>Produce a pruned tree corresponding to the optimal tree size obtained using cross-validation. If cross-validation does not lead to selection of a pruned tree, then create a pruned tree with five terminal nodes.
-<a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
-          <div class="collapse" id="x2q6">
-            <pre><code>
 
-            </code></pre>
-          </div>
           <li>Compare the test error rates between the pruned and unpruned trees. Which is higher?
 <a href="#x2q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q6" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q6">
             <pre><code>
-
+#  You can compute the MSE as follows: 1 - mean(test_labels == prediction_labels)
             </code></pre>
           </div>
         </ol>
