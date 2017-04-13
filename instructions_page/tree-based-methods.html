@@ -88,10 +88,10 @@ plot(cross_validated_tree)
 car.forest = randomForest('your formula', data='...', subset='...', mtry='...', ntree='...')
           </code></pre>
           </div>
-          <li>Use random forests to analyze this data. What test MSE do you obtain? Use the <b class='function'>importance()</b> function to determine which variables are most important. <a href="#x1q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q5" class='question'>Need a hint?</a></li>
+          <li>Use the random forest algorithm to build a model. What test MSE do you obtain? Use the <b class='function'>importance()</b> function to determine which variables are most important. <a href="#x1q5" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q5" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x1q5">
             <pre><code>
-# This one should be easy, remember the difference between bagging and random forest. Use the random forest library.
+# This one should be easy, remember the difference between bagging and random forest is in the number of features used. Use the random forest library.
             </code></pre>
           </div>
           <li>Try to make a single plot with the MSE on the y-axis and the number of trees on the x-axis for each approach. <a href="#x1q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x1q6" class='question'>Need a hint?</a></li>
@@ -126,7 +126,7 @@ lines() # plots lines based on x, y coordinates.
           <li>Create a training set containing a random sample of 800 observations, and a test set containing the remaining observations. <a href="#x2q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q0" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q0">
             <pre><code>
-              
+
             </code></pre>
           </div>
           <li>Fit a tree to the training data, with Purchase as the response and the other variables as predictors. Use the summary() function to produce summary statistics about the tree, and describe the results obtained. What is the training error rate? How many terminal nodes does the tree have?
@@ -214,31 +214,31 @@ lines() # plots lines based on x, y coordinates.
 <a href="#x3q11" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q11" class='question'>Need a hint?</a></li>
                 <div class="collapse" id="x3q11">
                   <pre><code>
-Perform a brief data exploration.
-                  </code></pre>
-                </div>
-                <li>Remove the observations for whom the salary information is unknown, and then log-transform the salaries
-<a href="#x3q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q0" class='question'>Need a hint?</a></li>
-                <div class="collapse" id="x3q0">
-                  <pre><code>
+# Make sure you have a general understanding of the code below.
+Hitters = Hitters[-which(is.na(Hitters$Salary)), ]
+
+Hitters$Salary = log(Hitters$Salary)
                   </code></pre>
                 </div>
                 <li>Create a training set consisting of the first 200 observations, and a test set consisting of the remaining observations.
 <a href="#x3q1" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q1" class='question'>Need a hint?</a></li>
                 <div class="collapse" id="x3q1">
                   <pre><code>
+# Use the sample method
                   </code></pre>
                 </div>
                 <li>Perform boosting on the training set with 1,000 trees for a range of values of the shrinkage parameter λ. Produce a plot with different shrinkage values on the x-axis and the corresponding training set MSE on the y-axis.
 <a href="#x3q2" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q2" class='question'>Need a hint?</a></li>
                 <div class="collapse" id="x3q2">
                   <pre><code>
+# Look at ?gbm
                   </code></pre>
                 </div>
                 <li>Produce a plot with different shrinkage values on the x-axis and the corresponding test set MSE on the y-axis.
 <a href="#x3q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q3" class='question'>Need a hint?</a></li>
                 <div class="collapse" id="x3q3">
                   <pre><code>
+# You can plot your model
                   </code></pre>
                 </div>
                 <li>Which variables appear to be the most important predictors in the boosted model?
@@ -252,6 +252,7 @@ Perform a brief data exploration.
 <a href="#x3q6" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q6" class='question'>Need a hint?</a></li>
                 <div class="collapse" id="x3q6">
                   <pre><code>
+# For this use the randomForest library
                   </code></pre>
                 </div>
               </ol>

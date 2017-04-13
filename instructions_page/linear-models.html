@@ -145,17 +145,18 @@ selection = data[,-6] # This is the data matrix selected without the 6th column.
             <li>Which predictors appear to have a statistically significant relationship to the response?</li>
             <li>What does the coefficient for the year variable suggest?</li>
           </ul>
-          <li>Use the plot() function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit. Do the residual plots suggest any unusually large outliers? Does the leverage plot identify any observations with unusually high leverage?
+          <li>Use the plot() function to produce diagnostic plots of the linear regression fit. Comment on any problems you see with the fit.
 <a href="#x2q3" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q3" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q3">
             <pre><code>
             </code></pre>
           </div>
-          <li>Use the * and : symbols to fit linear regression models with interaction effects. Do any interactions appear to be statistically significant?
+          <li>Take a look at your scatterplot matrix, check if there is any correlation between variables. Use the * and : symbols to fit a linear regression model with interaction effects. Do any interactions appear to be statistically significant?
 <a href="#x2q4" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x2q4" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x2q4">
           <pre><code>
 # To model interactions we use the * and : notation. * notation includes both variables alone and their interation, : includes only the interaction.
+# Reference: https://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html
 # For example
 lm.auto = lm(mpg ~ weight * acceleration + displacement)
           </code></pre>
@@ -180,7 +181,7 @@ lm.auto = lm(mpg ~ weight * acceleration + displacement)
 <a href="#x3q0" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="x3q0" class='question'>Need a hint?</a></li>
           <div class="collapse" id="x3q0">
             <pre><code>
-# Use the rep() function to create a vector with zeroes. Fill this vector with ones where the the mpg is exceeding the value of the median. 
+# Use the rep() function to create a vector with zeroes. Fill this vector with ones where the the mpg is exceeding the value of the median.
 mpg01 = rep(0, length(mpg))
 mpg01[mpg>median(mpg)] = 1
 Auto = data.frame(Auto, mpg01)
